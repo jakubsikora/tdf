@@ -17,6 +17,7 @@
     "forever": "^0.14.1",
     "node-libs-browser": "^0.5.0",
     "react": "^0.13.3",
+    "react-router": "^0.13.3",
     "webpack": "^1.9.7"
   }
 }

@@ -1,39 +1,34 @@
-var Router = require('react-router');
-var Route = Router.Route;
+import React from 'react';
+import Router from 'react-router';
+import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
+
+const App = React.createClass({
+  render() {
+    return (
+      <div>
+        <h1>App1</h1>
+        <Link to="todo1">Todo</Link>
+        <RouteHandler />
+      </div>
+    );
+  }
+});
+
+const TODO = React.createClass({
+  render() {
+    return (
+      <h1>TODO1!!!!</h1>
+    );
+  }
+});
 
 // declare our routes and their hierarchy
-var routes = (
-  <Route handler={App}>
-    <Route path="about" handler={About}/>
-    <Route path="inbox" handler={Inbox}/>
+const routes = (
+  <Route name="app" path="/" handler={App}>
+    <Route name="todo1" path="todo" handler={TODO} />
   </Route>
 );
 
-var RouteHandler = Router.RouteHandler;
-
-var App = React.createClass({
-  render () {
-    return (
-      <div>
-        <h1>App</h1>
-        <RouteHandler/>
-      </div>
-    )
-  }
-});
-
-var About = React.createClass({
-  render: function () {
-    return <h2>About</h2>;
-  }
-});
-
-var Inbox = React.createClass({
-  render: function () {
-    return <h2>Inbox</h2>;
-  }
-});
-
-Router.run(routes, Router.HashLocation, (Root) => {
-  React.render(<Root/>, document.body);
+Router.run(routes, Router.HistoryLocation, (Handler) => {
+  React.render(<Handler/>, document.getElementById('container'));
 });
